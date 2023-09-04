@@ -1,0 +1,20 @@
+@URL_BASE=http://localhost:8080
+
+###Obter todas as pessoas
+GET {{URL_BASE}}/pessoa
+
+###Obter todas as pessoas
+GET {{URL_BASE}}/pessoa/1
+
+### Cadastrar 1 pessoa
+POST {{URL_BASE}}/pessoa
+
+### Atualizar 1 pessoa
+PUT {{URL_BASE}}/pessoa/1
+
+### Deletar 1 pessoa
+DELETE {{URL_BASE}}/pessoa/1
+
+{
+
+}
