@@ -20,7 +20,7 @@ import lombok.ToString;
 @ToString
 
 @Entity
-@Table(name="tb_person")
+@Table(name="tb_pessoa")
 public class Pessoa extends BaseEntity{
     
     @Column(name = "name", length = 150, nullable = false)
@@ -30,5 +30,8 @@ public class Pessoa extends BaseEntity{
     private String email;
 
     @Column(name = "birth")
-    private LocalDateTime nascimento; 
+    private LocalDateTime nascimento;
+
+    @Column(name = "identificacao")
+    private String identificacao;
 }
