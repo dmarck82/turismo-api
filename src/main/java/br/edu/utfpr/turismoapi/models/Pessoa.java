@@ -1,6 +1,6 @@
 package br.edu.utfpr.turismoapi.models;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -23,15 +23,22 @@ import lombok.ToString;
 @Table(name="tb_pessoa")
 public class Pessoa extends BaseEntity{
     
-    @Column(name = "name", length = 150, nullable = false)
+    @Column(name = "nome", length = 150, nullable = false)
     private String nome;
 
-    @Column(name = "email")
+    @Column(name = "email", length = 150, nullable = false)
     private String email;
 
-    @Column(name = "birth")
-    private LocalDateTime nascimento;
+    @Column(name = "telefone", length = 20, nullable = false)
+    private String telefone;
 
-    @Column(name = "identificacao")
+    @Column(name = "aniversario", nullable = true)
+    private LocalDate aniversario;
+
+    @Column(name = "identificacao", length = 20, nullable = false)
     private String identificacao;
+
+    @Column(name = "senha", length = 20, nullable = false)
+    private String senha;
+
 }
