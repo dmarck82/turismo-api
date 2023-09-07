@@ -18,14 +18,14 @@ public class BaseEntity {
     @Id
     private UUID id;
 
-    @Column(name = "created_at")
-    private LocalDateTime createdAt;
+    @Column(name = "criado_em")
+    private LocalDateTime criado_em;
 
-    @Column(name = "updated_at")
-    private LocalDateTime updatedAt;
+    @Column(name = "atualizado_em")
+    private LocalDateTime atualizado_em;
 
     public BaseEntity() {
         this.id = UUID.randomUUID();
-        this.updatedAt = createdAt = LocalDateTime.now();
+        this.atualizado_em = criado_em = LocalDateTime.now();
     }
 }

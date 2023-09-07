@@ -3,17 +3,42 @@
 ###Obter todas as pessoas
 GET {{URL_BASE}}/pessoa
 
-###Obter todas as pessoas
-GET {{URL_BASE}}/pessoa/1
+###Obter todas as pessoas por pagina
+GET {{URL_BASE}}/pessoa/pages?size=20&page=0&sort=nome&direction=DESC
+
+###Obter uma pessoa
+GET {{URL_BASE}}/pessoa/e4b55657-4777-461e-825d-8d08db655d91
 
 ### Cadastrar 1 pessoa
 POST {{URL_BASE}}/pessoa
+Content-Type: application/json
+
+{
+    "nome": "Douglas Marcondes",
+    "email": "douglas.marcondes@gmail.com",
+    "telefone": "+5545998217562",
+    "aniversario": "1991-03-04",
+    "identificacao": "cliente",
+    "senha": "medianeira1234"
+}
 
 ### Atualizar 1 pessoa
-PUT {{URL_BASE}}/pessoa/1
+PUT {{URL_BASE}}/pessoa/4ea0b947-b80f-4c6d-85e2-48f63658cf67
+Content-Type: application/json
+
+{
+    "nome": "Douglas Marcondes",
+    "email": "douglasc@alunos.utfpr.edu.br",
+    "telefone": "+5545998217562",
+    "aniversario": "1991-03-04",
+    "identificacao": "admnistrador",
+    "senha": "natal123"
+}
+
+
 
 ### Deletar 1 pessoa
-DELETE {{URL_BASE}}/pessoa/1
+DELETE {{URL_BASE}}/pessoa/b5112ca2-b362-4e43-b3fc-69b999a8bfb4
 
 {
 
