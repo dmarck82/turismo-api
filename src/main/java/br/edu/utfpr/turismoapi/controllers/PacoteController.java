@@ -22,64 +22,62 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.edu.utfpr.turismoapi.dto.PessoaDTO;
-import br.edu.utfpr.turismoapi.models.Pessoa;
-import br.edu.utfpr.turismoapi.repositories.PessoaRepository;
+import br.edu.utfpr.turismoapi.dto.PacoteDTO;
+import br.edu.utfpr.turismoapi.models.Pacote;
+import br.edu.utfpr.turismoapi.repositories.PacoteRepository;
 
 @RestController
-@RequestMapping("/pessoa")
-public class PessoaController {
+@RequestMapping("/pacote")
+public class PacoteController {
 
     @Autowired
-    PessoaRepository pessoaRepository;
+    PacoteRepository pacoteRepository;
 
-    // Obter todas as pessoas do banco
+    // Obter todos os pacotes do banco
     @GetMapping(value = { "", "/" })
-    public List<Pessoa> getAll() {
-        return pessoaRepository.findAll();
+    public List<Pacote> getAll() {
+        return pacoteRepository.findAll();
     }
 
-    // Obter todas as pessoas paginadas
+    // Obter todas as reservas de forma paginada
     @GetMapping("/pages")
-    public ResponseEntity<Page<Pessoa>> getAllPage(
+    public ResponseEntity<Page<Pacote>> getAllPage(
             @PageableDefault(page = 0, size = 10, sort = "nome", direction = Sort.Direction.ASC) Pageable pageable) {
-
-        return ResponseEntity.ok().body(pessoaRepository.findAll(pageable));
+        return ResponseEntity.ok().body(pacoteRepository.findAll(pageable));
     }
 
-    // Obter 1 pessoa por ID
+    // Obter um pacote por ID
     @GetMapping("/{id}")
     public ResponseEntity<Object> getById(@PathVariable String id) {
-        Optional<Pessoa> pessoaOpt = pessoaRepository
+        Optional<Pacote> pacoteOpt = pacoteRepository
                 .findById(UUID.fromString(id));
 
-        return pessoaOpt.isPresent()
-                ? ResponseEntity.ok(pessoaOpt.get())
+        return pacoteOpt.isPresent()
+                ? ResponseEntity.ok(pacoteOpt.get())
                 : ResponseEntity.notFound().build();
     }
 
-    // Inserir 1 pessoa
+    // Inserir 1 pacote
     @PostMapping("")
-    public ResponseEntity<Object> create(@RequestBody PessoaDTO pessoaDTO) {
-        var pes = new Pessoa(); // pessoa para persistir no DB
-        BeanUtils.copyProperties(pessoaDTO, pes);
+    public ResponseEntity<Object> create(@RequestBody PacoteDTO pacoteDTO) {
+        var pac = new Pacote(); // pacote que será persistido no DB
+        BeanUtils.copyProperties(pacoteDTO, pac);
 
         try {
             return ResponseEntity
                     .status(HttpStatus.CREATED)
-                    .body(pessoaRepository.save(pes));
+                    .body(pacoteRepository.save(pac));
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
-                    .body("Falha ao criar pessoa.");
+                    .body("Falha ao criar pacote");
         }
     }
 
-    // Atualizar 1 pessoa por ID
+    // Atualizar 1 pacote por ID
     @PutMapping("/{id}")
-    public ResponseEntity<Object> update(@PathVariable String id, @RequestBody PessoaDTO pessoaDTO) {
-
+    ResponseEntity<Object> update(@PathVariable String id, @RequestBody PacoteDTO pacoteDTO) {
         UUID uuid;
         try {
             uuid = UUID.fromString(id);
@@ -89,33 +87,31 @@ public class PessoaController {
                     .body("Formato de UUID inválido");
         }
 
-        // Buscando a pessoa no banco de dados
-        var pessoa = pessoaRepository.findById(uuid);
+        // Buscando o pacote no banco de dados
+        var pacote = pacoteRepository.findById(uuid);
 
-        // Verifica se ela existe
-        if (pessoa.isEmpty())
+        // Verifica se ele existe
+        if (pacote.isEmpty())
             return ResponseEntity
                     .notFound()
                     .build();
 
-        var pessoaToUpdate = pessoa.get();
-        BeanUtils.copyProperties(pessoaDTO, pessoaToUpdate);
-        pessoaToUpdate.setAtualizado_em(LocalDateTime.now());
+        var pacoteToUpdate = pacote.get();
+        BeanUtils.copyProperties(pacoteDTO, pacoteToUpdate);
+        pacoteToUpdate.setAtualizado_em(LocalDateTime.now());
 
         try {
             return ResponseEntity
                     .ok()
-                    .body(pessoaRepository.save(pessoaToUpdate));
+                    .body(pacoteRepository.save(pacoteToUpdate));
         } catch (Exception e) {
-            e.printStackTrace();
-
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
-                    .body("Falha ao atualizar pessoa.");
+                    .body("Falha ao atualizar o passeio.");
         }
     }
 
-    // Deletar 1 pessoa por ID
+    // Deletar 1 pacote por ID
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> delete(@PathVariable String id) {
 
@@ -128,15 +124,17 @@ public class PessoaController {
                     .body("Formato de UUID inválido");
         }
 
-        var pessoa = pessoaRepository.findById(uuid);
+        // Buscando o passeio no banco de dados
+        var pacote = pacoteRepository.findById(uuid);
 
-        if (pessoa.isEmpty())
+        // Verifica se ele existe
+        if (pacote.isEmpty())
             return ResponseEntity
                     .notFound()
                     .build();
 
         try {
-            pessoaRepository.delete(pessoa.get());
+            pacoteRepository.delete(pacote.get());
 
             return ResponseEntity
                     .ok()

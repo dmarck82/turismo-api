@@ -4,10 +4,10 @@
 GET {{URL_BASE}}/pessoa
 
 ###Obter todas as pessoas por pagina
-GET {{URL_BASE}}/pessoa/pages?size=20&page=0&sort=nome&direction=DESC
+GET {{URL_BASE}}/pessoa/pages?size=20&page=0&sort=email&direction=DESC
 
 ###Obter uma pessoa
-GET {{URL_BASE}}/pessoa/e4b55657-4777-461e-825d-8d08db655d91
+GET {{URL_BASE}}/pessoa/07d51ac6-9f73-43da-8725-ae2edc4d458d
 
 ### Cadastrar 1 pessoa
 POST {{URL_BASE}}/pessoa
@@ -23,7 +23,7 @@ Content-Type: application/json
 }
 
 ### Atualizar 1 pessoa
-PUT {{URL_BASE}}/pessoa/4ea0b947-b80f-4c6d-85e2-48f63658cf67
+PUT {{URL_BASE}}/pessoa/07d51ac6-9f73-43da-8725-ae2edc4d458d
 Content-Type: application/json
 
 {
@@ -38,7 +38,7 @@ Content-Type: application/json
 
 
 ### Deletar 1 pessoa
-DELETE {{URL_BASE}}/pessoa/b5112ca2-b362-4e43-b3fc-69b999a8bfb4
+DELETE {{URL_BASE}}/pessoa/07d51ac6-9f73-43da-8725-ae2edc4d458d
 
 {
 

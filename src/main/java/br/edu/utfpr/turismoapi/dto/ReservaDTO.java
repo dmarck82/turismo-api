@@ -1,7 +1,9 @@
 package br.edu.utfpr.turismoapi.dto;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
+import br.edu.utfpr.turismoapi.models.Pacote;
+import br.edu.utfpr.turismoapi.models.Pessoa;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,13 +16,9 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 
-public class PessoaDTO {
-
-    private String nome;
-    private String email;
-    private String telefone;
-    private LocalDate aniversario;
-    private String identificacao;
-    private String senha;
-
+public class ReservaDTO{
+    
+    private Pacote pacote;
+    private Pessoa person;
+    private LocalDateTime data;
 }
