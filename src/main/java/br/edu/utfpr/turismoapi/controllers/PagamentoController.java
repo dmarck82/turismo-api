@@ -22,64 +22,62 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.edu.utfpr.turismoapi.dto.PessoaDTO;
-import br.edu.utfpr.turismoapi.models.Pessoa;
-import br.edu.utfpr.turismoapi.repositories.PessoaRepository;
+import br.edu.utfpr.turismoapi.dto.PagamentoDTO;
+import br.edu.utfpr.turismoapi.models.Pagamento;
+import br.edu.utfpr.turismoapi.repositories.PagamentoRepository;
 
 @RestController
-@RequestMapping("/pessoa")
-public class PessoaController {
+@RequestMapping("/pagamento")
+public class PagamentoController {
 
     @Autowired
-    PessoaRepository pessoaRepository;
+    PagamentoRepository pagamentoRepository;
 
-    // Obter todas as pessoas do banco
+    // Obter todos os pagamentos do banco
     @GetMapping(value = { "", "/" })
-    public List<Pessoa> getAll() {
-        return pessoaRepository.findAll();
+    public List<Pagamento> getAll() {
+        return pagamentoRepository.findAll();
     }
 
-    // Obter todas as pessoas paginadas
+    // Obter todos pagamentos de forma paginada
     @GetMapping("/pages")
-    public ResponseEntity<Page<Pessoa>> getAllPage(
-            @PageableDefault(page = 0, size = 10, sort = "nome", direction = Sort.Direction.ASC) Pageable pageable) {
-
-        return ResponseEntity.ok().body(pessoaRepository.findAll(pageable));
+    public ResponseEntity<Page<Pagamento>> getAllPage(
+            @PageableDefault(page = 0, size = 10, direction = Sort.Direction.ASC) Pageable pageable) {
+        return ResponseEntity.ok().body(pagamentoRepository.findAll(pageable));
     }
 
-    // Obter 1 pessoa por ID
+    // Obter um pagamento por ID
     @GetMapping("/{id}")
     public ResponseEntity<Object> getById(@PathVariable String id) {
-        Optional<Pessoa> pessoaOpt = pessoaRepository
+        Optional<Pagamento> pagamentoOpt = pagamentoRepository
                 .findById(UUID.fromString(id));
 
-        return pessoaOpt.isPresent()
-                ? ResponseEntity.ok(pessoaOpt.get())
+        return pagamentoOpt.isPresent()
+                ? ResponseEntity.ok(pagamentoOpt.get())
                 : ResponseEntity.notFound().build();
     }
 
-    // Inserir 1 pessoa
+    // Inserir 1 pagamento
     @PostMapping("")
-    public ResponseEntity<Object> create(@RequestBody PessoaDTO pessoaDTO) {
-        var pes = new Pessoa(); // pessoa para persistir no DB
-        BeanUtils.copyProperties(pessoaDTO, pes);
+    public ResponseEntity<Object> create(@RequestBody PagamentoDTO pagamentoDTO) {
+        var pag = new Pagamento(); // pagamento que será persistido no DB
+        BeanUtils.copyProperties(pagamentoDTO, pag);
 
         try {
             return ResponseEntity
                     .status(HttpStatus.CREATED)
-                    .body(pessoaRepository.save(pes));
+                    .body(pagamentoRepository.save(pag));
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
-                    .body("Falha ao criar pessoa.");
+                    .body("Falha ao criar pagamento");
         }
     }
 
-    // Atualizar 1 pessoa por ID
+    // Atualizar 1 pagamento por ID
     @PutMapping("/{id}")
-    public ResponseEntity<Object> update(@PathVariable String id, @RequestBody PessoaDTO pessoaDTO) {
-
+    ResponseEntity<Object> update(@PathVariable String id, @RequestBody PagamentoDTO pagamentoDTO) {
         UUID uuid;
         try {
             uuid = UUID.fromString(id);
@@ -89,33 +87,31 @@ public class PessoaController {
                     .body("Formato de UUID inválido");
         }
 
-        // Buscando a pessoa no banco de dados
-        var pessoa = pessoaRepository.findById(uuid);
+        // Buscando o pagamento no banco de dados
+        var pagamento = pagamentoRepository.findById(uuid);
 
-        // Verifica se ela existe
-        if (pessoa.isEmpty())
+        // Verifica se ele existe
+        if (pagamento.isEmpty())
             return ResponseEntity
                     .notFound()
                     .build();
 
-        var pessoaToUpdate = pessoa.get();
-        BeanUtils.copyProperties(pessoaDTO, pessoaToUpdate);
-        pessoaToUpdate.setAtualizado_em(LocalDateTime.now());
+        var pagamentoToUpdate = pagamento.get();
+        BeanUtils.copyProperties(pagamentoDTO, pagamentoToUpdate);
+        pagamentoToUpdate.setAtualizado_em(LocalDateTime.now());
 
         try {
             return ResponseEntity
                     .ok()
-                    .body(pessoaRepository.save(pessoaToUpdate));
+                    .body(pagamentoRepository.save(pagamentoToUpdate));
         } catch (Exception e) {
-            e.printStackTrace();
-
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
-                    .body("Falha ao atualizar pessoa.");
+                    .body("Falha ao atualizar o pagamento.");
         }
     }
 
-    // Deletar 1 pessoa por ID
+    // Deletar 1 pacote por ID
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> delete(@PathVariable String id) {
 
@@ -128,15 +124,17 @@ public class PessoaController {
                     .body("Formato de UUID inválido");
         }
 
-        var pessoa = pessoaRepository.findById(uuid);
+        // Buscando o passeio no banco de dados
+        var pagamento = pagamentoRepository.findById(uuid);
 
-        if (pessoa.isEmpty())
+        // Verifica se ele existe
+        if (pagamento.isEmpty())
             return ResponseEntity
                     .notFound()
                     .build();
 
         try {
-            pessoaRepository.delete(pessoa.get());
+            pagamentoRepository.delete(pagamento.get());
 
             return ResponseEntity
                     .ok()

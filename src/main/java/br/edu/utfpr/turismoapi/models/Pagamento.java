@@ -13,7 +13,7 @@ import lombok.Setter;
 @Setter
 @Table(name = "tb_pagamento")
 public class Pagamento extends BaseEntity {
-    
+
     @Column(name = "valor", nullable = false)
     private double valor;
 
