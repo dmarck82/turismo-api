@@ -14,8 +14,8 @@ POST {{URL_BASE}}/reserva
 Content-Type: application/json
 
 {
-    "pacote" : { "id" : "34f7d0de-038e-4066-9392-dca4ffa0a51c"},
-    "pessoa" : { "id" : "d02fa129-27a1-4d7e-8c54-a2748da3ae50"},
+    "pacote" : { "id" : "e8f17ea0-6bcd-4275-b01f-dcb74fd75de1"},
+    "pessoa" : { "id" : "b12c2a76-da14-4277-a62b-b81ea4d52684"},
     "data"   : "2023-09-15T22:24:00"
 }
 

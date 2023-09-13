@@ -7,23 +7,29 @@ GET {{URL_BASE}}/pacote
 GET {{URL_BASE}}/pacote/pages?size=20&page=0&sort=id&direction=DESC
 
 ###Obter uma pacote
-GET {{URL_BASE}}/pacote/42c571c6-41d6-4f5e-9f4a-96600512d3f1
+GET {{URL_BASE}}/pacote/547896d3-ec00-4898-bc24-9e44945894bb
 
 ### Cadastrar 1 pacote
 POST {{URL_BASE}}/pacote
 Content-Type: application/json
 
 {
-    "passeio" : {"id" : "a9390495-5741-4404-9814-5f86b411a5e3"}
+    "preco"    : 1000.00,
+    "passeios" : [
+        { "id" : "95e84b91-a075-4377-acf3-757a9d39c488" },
+        { "id" : "c43d25d6-1be3-41fd-b5fb-e96977c151d5" }
+    ]
 }
 
 ### Atualizar 1 pacote
-PUT {{URL_BASE}}/pacote/b467bf79-4aad-485d-99dd-7ec2ee94a565
+PUT {{URL_BASE}}/pacote/547896d3-ec00-4898-bc24-9e44945894bb
 Content-Type: application/json
 
 {
-    "passeio" : { "id" : "520db4b2-f810-4692-9ac6-a1375065b7fd"},
-    "passeio" : { "id" : "1c34a478-bea7-435e-8905-3179231f123e"}
+    "passeios" : [ 
+        { "id" : "72fdb723-4647-480d-bb80-c1abcc03a3b0" },
+        { "id" : "c43d25d6-1be3-41fd-b5fb-e96977c151d5" }
+    ]
 }
 
 ### Deletar 1 pacote

@@ -19,6 +19,6 @@ import lombok.ToString;
 public class ReservaDTO{
     
     private Pacote pacote;
-    private Pessoa person;
+    private Pessoa pessoa;
     private LocalDateTime data;
 }
