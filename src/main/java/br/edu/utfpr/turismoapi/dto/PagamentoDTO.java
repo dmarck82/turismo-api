@@ -1,6 +1,7 @@
 package br.edu.utfpr.turismoapi.dto;
 
 import br.edu.utfpr.turismoapi.models.Reserva;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,7 +16,10 @@ import lombok.ToString;
 
 public class PagamentoDTO {
 
+    @NotBlank
     private double valor;
+
+    @NotBlank
     private Reserva reserva;
     
 }
