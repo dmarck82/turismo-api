@@ -15,6 +15,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -39,6 +40,10 @@ public class PessoaController {
 
     @Autowired
     PessoaRepository pessoaRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
 
     // Obter todas as pessoas do banco
     @GetMapping(value = { "", "/" })
@@ -70,6 +75,7 @@ public class PessoaController {
     public ResponseEntity<Object> create(@Valid @RequestBody PessoaDTO pessoaDTO) {
         var pes = new Pessoa(); // pessoa para persistir no DB
         BeanUtils.copyProperties(pessoaDTO, pes);
+        pes.setSenha(passwordEncoder.encode(pessoaDTO.getSenha()));
 
         try {
             return ResponseEntity

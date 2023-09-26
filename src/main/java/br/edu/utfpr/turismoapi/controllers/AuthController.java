@@ -5,6 +5,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,6 +22,9 @@ public class AuthController {
     @Autowired
     private JwtUtil jwtUtil;
 
+    @Value("${jwt_secret}")
+    private String jwtSecret;
+
     @PostMapping
     public ResponseEntity<Object> auth(@Valid @RequestBody AuthDTO authDTO){
         
@@ -32,13 +36,13 @@ public class AuthController {
 
         var now = Instant.now();
 
-        var jwt = jwtUtil.generateToken(payload, "1234", 3600);
+        var jwt = jwtUtil.generateToken(payload, jwtSecret, 3600);
 
         var res = new HashMap<String, Object>();
         res.put("token", jwt);
         res.put("issuedIn", now);
         res.put("expiresIn", now.plus(3600, ChronoUnit.SECONDS));
 
-        return ResponseEntity.ok().body(jwt);
+        return ResponseEntity.ok().body(res);
     }
 }

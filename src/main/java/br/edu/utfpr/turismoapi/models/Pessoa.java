@@ -1,6 +1,11 @@
 package br.edu.utfpr.turismoapi.models;
 
 import java.time.LocalDate;
+import java.util.Collection;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -21,7 +26,7 @@ import lombok.ToString;
 
 @Entity
 @Table(name="tb_pessoa")
-public class Pessoa extends BaseEntity{
+public class Pessoa extends BaseEntity implements UserDetails{
     
     @Column(name = "nome", length = 150, nullable = false)
     private String nome;
@@ -38,7 +43,48 @@ public class Pessoa extends BaseEntity{
     @Column(name = "identificacao", length = 20, nullable = false)
     private String identificacao;
 
-    @Column(name = "senha", length = 20, nullable = false)
+    @Column(name = "senha", nullable = false)
+    @JsonIgnore
     private String senha;
 
+    @Override
+    @JsonIgnore
+    public String getUsername() {
+        return this.email;
+    }
+
+    @Override
+    @JsonIgnore
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    @JsonIgnore
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    @JsonIgnore
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    @JsonIgnore
+    public boolean isEnabled() {
+        return true;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @Override
+    @JsonIgnore
+    public String getPassword() {
+        return this.senha;
+    }
 }
