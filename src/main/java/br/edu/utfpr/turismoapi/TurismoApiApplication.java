@@ -1,5 +1,6 @@
 package br.edu.utfpr.turismoapi;
 
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
