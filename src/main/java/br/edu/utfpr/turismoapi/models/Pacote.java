@@ -25,19 +25,14 @@ import lombok.ToString;
 @Table(name = "tb_pacote")
 public class Pacote extends BaseEntity {
     
-    //@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, mappedBy = "pacote")
-    //private List<Reserva> reservas = new ArrayList<Reserva>();
-
-    //@ManyToOne
-    //@JoinColumn(name = "pacote_id")
-    //private Passeio passeio;
-
+    @Column(name = "nome")
+    private String nome;
+    
     @Column(name = "preco")
     private Double preco;
 
     @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "pacote_id")
-    //@JsonIgnore
     private List<Passeio> passeios = new ArrayList<>();
     
 }

@@ -1,31 +1,42 @@
 @URL_BASE=http://localhost:8080
+@TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJBUEkgYXV0aGVudGljYXRpb24iLCJ1c2VybmFtZSI6ImRvdWdsYXMubWFyY29uZGVzQGdtYWlsLmNvbSIsImlhdCI6MTcwMTQ3OTA5OSwiZXhwIjoxNzAxNDgyNjk5LCJpc3MiOiJVVEZQUiJ9.6ozgwOx3aAL10K3FQ8vUhNbUgUNcNbc9hNKfyQl3dcI
 
 ###Obter todos os pacotes
 GET {{URL_BASE}}/pacote
+Authorization: Bearer {{TOKEN}}
+
 
 ###Obter todos os pacotes por pagina
 GET {{URL_BASE}}/pacote/pages?size=20&page=0&sort=id&direction=DESC
+Authorization: Bearer {{TOKEN}}
+
 
 ###Obter uma pacote
 GET {{URL_BASE}}/pacote/547896d3-ec00-4898-bc24-9e44945894bb
+Authorization: Bearer {{TOKEN}}
+
 
 ### Cadastrar 1 pacote
 POST {{URL_BASE}}/pacote
 Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
 
 {
+    "nome" : "Teste",
     "preco"    : 1000.00,
     "passeios" : [
-        { "id" : "95e84b91-a075-4377-acf3-757a9d39c488" },
-        { "id" : "c43d25d6-1be3-41fd-b5fb-e96977c151d5" }
+        { "id" : "c0efbd13-65bb-49e7-8cab-c583336ffed6" },
+        { "id" : "ed8448e4-5909-4e78-a146-df43675c8991" }
     ]
 }
 
 ### Atualizar 1 pacote
-PUT {{URL_BASE}}/pacote/547896d3-ec00-4898-bc24-9e44945894bb
+PUT {{URL_BASE}}/pacote/977708cb-d299-4492-90d8-35db9a8277a5
 Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
 
 {
+    "nome" : "8 ou 80 RJ",
     "passeios" : [ 
         { "id" : "72fdb723-4647-480d-bb80-c1abcc03a3b0" },
         { "id" : "c43d25d6-1be3-41fd-b5fb-e96977c151d5" }
@@ -34,6 +45,7 @@ Content-Type: application/json
 
 ### Deletar 1 pacote
 DELETE {{URL_BASE}}/pacote/42c571c6-41d6-4f5e-9f4a-96600512d3f1
+Authorization: Bearer {{TOKEN}}
 
 {
 

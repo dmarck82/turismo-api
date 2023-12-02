@@ -1,7 +1,11 @@
 @URL_BASE=http://localhost:8080
 
+@TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJBUEkgYXV0aGVudGljYXRpb24iLCJ1c2VybmFtZSI6ImRvdWdsYXMubWFyY29uZGVzQGdtYWlsLmNvbSIsImlhdCI6MTcwMDY2OTMzNywiZXhwIjoxNzAwNjcyOTM3LCJpc3MiOiJVVEZQUiJ9.6QLI6ccKiXNUsXqZb1Eo1cmoySaSU0J7YM4pfBJRVD8
+
+
 ###Obter todos os pacotes
 GET {{URL_BASE}}/auth
+Authorization: Bearer {{TOKEN}}
 
 ### Cadastrar 1 usuário
 POST {{URL_BASE}}/auth
@@ -9,5 +13,6 @@ Content-Type: application/json
 
 {
     "username" : "douglas.marcondes@gmail.com",
-    "password" : "medianeira1234"
+    "password" : "resende123"
 }
+

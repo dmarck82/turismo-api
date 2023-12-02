@@ -46,7 +46,7 @@ public class WebSecurityConfig {
 
         // Set permissions on endpoints
         http.authorizeHttpRequests()
-                .requestMatchers(HttpMethod.POST, "/auth").permitAll()
+                /*.requestMatchers(HttpMethod.POST, "/auth").permitAll()
                 .requestMatchers(HttpMethod.POST, "/pessoa").permitAll()
                 .requestMatchers(HttpMethod.POST, "/pacote").authenticated()
                 .requestMatchers(HttpMethod.POST, "/pagamento").authenticated()
@@ -54,8 +54,8 @@ public class WebSecurityConfig {
                 .requestMatchers(HttpMethod.POST, "/reserva").authenticated()
                 .requestMatchers(HttpMethod.GET, "/passeio").permitAll()
                 .requestMatchers(HttpMethod.GET, "/pacote").permitAll()
-                .requestMatchers(HttpMethod.GET, "/reserva").authenticated()
-                .anyRequest().authenticated();
+                .requestMatchers(HttpMethod.GET, "/reserva").authenticated() */
+                .anyRequest().permitAll();//.authenticated();
 
         // Add JWT token filter
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

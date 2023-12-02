@@ -1,7 +1,10 @@
 @URL_BASE=http://localhost:8080
+@TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJBUEkgYXV0aGVudGljYXRpb24iLCJ1c2VybmFtZSI6ImRvdWdsYXMubWFyY29uZGVzQGdtYWlsLmNvbSIsImlhdCI6MTcwMTQ3OTA5OSwiZXhwIjoxNzAxNDgyNjk5LCJpc3MiOiJVVEZQUiJ9.6ozgwOx3aAL10K3FQ8vUhNbUgUNcNbc9hNKfyQl3dcI
 
 ###Obter todas os passeios
 GET {{URL_BASE}}/passeio
+Authorization: Bearer {{TOKEN}}
+
 
 ###Obter os passeios por pagina
 GET {{URL_BASE}}/passeio/pages?size=20&page=0&sort=destino&direction=DESC
@@ -12,6 +15,7 @@ GET {{URL_BASE}}/passeio/00c3a69e-8bd9-4b79-b312-a62944862f7b
 ### Cadastrar 1 passeio
 POST {{URL_BASE}}/passeio
 Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
 
 {
     "destino": "Medianeira",
@@ -22,6 +26,7 @@ Content-Type: application/json
 ### Cadastrar outro passeio
 POST {{URL_BASE}}/passeio
 Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
 
 {
     "destino": "Resende",
