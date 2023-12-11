@@ -26,5 +26,5 @@ public class PacoteDTO {
     private double preco;
 
     @NotEmpty
-    private List<Passeio> passeios = new ArrayList<>();
+    private List<String> passeios = new ArrayList<>();
 }

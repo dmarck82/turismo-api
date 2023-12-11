@@ -1,5 +1,5 @@
 @URL_BASE=http://localhost:8080
-@TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJBUEkgYXV0aGVudGljYXRpb24iLCJ1c2VybmFtZSI6ImRvdWdsYXMubWFyY29uZGVzQGdtYWlsLmNvbSIsImlhdCI6MTcwMTQ3OTA5OSwiZXhwIjoxNzAxNDgyNjk5LCJpc3MiOiJVVEZQUiJ9.6ozgwOx3aAL10K3FQ8vUhNbUgUNcNbc9hNKfyQl3dcI
+@TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJBUEkgYXV0aGVudGljYXRpb24iLCJ1c2VybmFtZSI6ImRvdWdsYXMubWFyY29uZGVzQGdtYWlsLmNvbSIsImlhdCI6MTcwMTg3OTMyMiwiZXhwIjoxNzAxODgyOTIyLCJpc3MiOiJVVEZQUiJ9.bTr3Nz7id9pMakqzYiI3F1OLwVKI3DzZrw8zILKuCcM
 
 ###Obter todos os pacotes
 GET {{URL_BASE}}/pacote
@@ -25,8 +25,8 @@ Authorization: Bearer {{TOKEN}}
     "nome" : "Teste",
     "preco"    : 1000.00,
     "passeios" : [
-        { "id" : "c0efbd13-65bb-49e7-8cab-c583336ffed6" },
-        { "id" : "ed8448e4-5909-4e78-a146-df43675c8991" }
+        { "id" : "c7ea3c08-d06e-48b3-a0a7-7ac7ce777087" },
+        { "id" : "4a2df9f7-aa41-4edd-80b8-09432896c631" }
     ]
 }
 

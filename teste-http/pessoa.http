@@ -1,6 +1,6 @@
 @URL_BASE=http://localhost:8080
 
-@TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJBUEkgYXV0aGVudGljYXRpb24iLCJ1c2VybmFtZSI6ImRvdWdsYXMubWFyY29uZGVzQGdtYWlsLmNvbSIsImlhdCI6MTcwMTQ3MjU1MywiZXhwIjoxNzAxNDc2MTUzLCJpc3MiOiJVVEZQUiJ9.5cp4hNxv9aUDyBu9NzzSeEamDO18MmKmz_aHaxVtlnc
+@TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJBUEkgYXV0aGVudGljYXRpb24iLCJ1c2VybmFtZSI6ImRvdWdsYXMubWFyY29uZGVzQGdtYWlsLmNvbSIsImlhdCI6MTcwMjMxMzUzNiwiZXhwIjoxNzAyMzE3MTM2LCJpc3MiOiJVVEZQUiJ9.izhOYgFJVBEXcfqhgvABiExjoFVvuAqI2E6cNBXsQ8k
 
 
 ###Obter todas as pessoas
@@ -29,7 +29,7 @@ Content-Type: application/json
 }
 
 ### Atualizar 1 pessoa
-PUT {{URL_BASE}}/pessoa/807eba5b-e2a5-4122-b5bb-2fc39294ffc4
+PUT {{URL_BASE}}/pessoa/9c594d7b-8047-46cc-b4dd-395cc9e6f304
 Content-Type: application/json
 Authorization: Bearer {{TOKEN}}
 
